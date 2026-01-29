@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,8 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/ticket/{id}', [AdminController::class, 'show'])->name('admin.ticket.show');
+    Route::patch('/admin/ticket/{id}', [AdminController::class, 'update'])->name('admin.ticket.update');
 });
 
 Route::middleware(['auth', 'role:user'])->group(function () {
