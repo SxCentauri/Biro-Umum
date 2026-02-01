@@ -5,13 +5,14 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebProfileController;
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(WebProfileController::class)->group(function () {
-    Route::get('/', 'index')->name('web.home');       // Halaman Depan
-    Route::get('/profil', 'profil')->name('web.profil'); // Halaman Profil/Visi Misi
-    Route::get('/layanan', 'layanan')->name('web.layanan'); // Halaman Layanan
-    Route::get('/kontak', 'kontak')->name('web.kontak');   // Halaman Kontak
+    Route::get('/', 'index')->name('web.home');
+    Route::get('/profil', 'profil')->name('web.profil');
+    Route::get('/layanan', 'layanan')->name('web.layanan');
+    Route::get('/kontak', 'kontak')->name('web.kontak');
 });
 
 Route::middleware('auth')->group(function () {
@@ -30,6 +31,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/posts/{id}/edit', [AdminPostController::class, 'edit'])->name('admin.posts.edit');
     Route::put('/admin/posts/{id}', [AdminPostController::class, 'update'])->name('admin.posts.update');
     Route::delete('/admin/posts/{id}', [AdminPostController::class, 'destroy'])->name('admin.posts.destroy');
+    Route::get('/admin/report', [ReportController::class, 'index'])->name('admin.report.index');
+    Route::get('/admin/report/print', [ReportController::class, 'print'])->name('admin.report.print');
 });
 
 Route::middleware(['auth', 'role:user'])->group(function () {

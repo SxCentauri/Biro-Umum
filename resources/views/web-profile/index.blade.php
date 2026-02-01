@@ -97,53 +97,50 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <article class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-                        <div class="relative h-48 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?q=80&w=800&auto=format&fit=crop" alt="Berita" class="w-full h-full object-cover">
-                            <span class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded">KEGIATAN</span>
-                        </div>
-                        <div class="p-6">
-                            <div class="text-gray-500 text-sm mb-2 flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                26 Januari 2026
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition">Rapat Koordinasi Aset Daerah</h3>
-                            <p class="text-gray-600 text-sm line-clamp-3">Kepala Biro Umum memimpin rapat koordinasi terkait inventarisasi aset bergerak dan tidak bergerak...</p>
-                            <a href="#" class="inline-block mt-4 text-blue-600 font-semibold hover:underline">Baca Selengkapnya &rarr;</a>
-                        </div>
-                    </article>
+                    @forelse($posts as $post)
+                        <article class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 flex flex-col h-full">
 
-                    <article class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-                        <div class="relative h-48 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1541872703-74c5963631df?q=80&w=800&auto=format&fit=crop" alt="Berita" class="w-full h-full object-cover">
-                            <span class="absolute top-4 right-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded">SOSIAL</span>
-                        </div>
-                        <div class="p-6">
-                            <div class="text-gray-500 text-sm mb-2 flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                25 Januari 2026
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition">Kunjungan Kerja Gubernur</h3>
-                            <p class="text-gray-600 text-sm line-clamp-3">Mendampingi Gubernur Bengkulu dalam rangka kunjungan kerja ke Kabupaten Bengkulu Utara...</p>
-                            <a href="#" class="inline-block mt-4 text-blue-600 font-semibold hover:underline">Baca Selengkapnya &rarr;</a>
-                        </div>
-                    </article>
+                            <div class="relative h-48 bg-gray-200">
+                                @if($post->gambar)
+                                    <img src="{{ asset('storage/' . $post->gambar) }}" alt="{{ $post->judul }}" class="w-full h-full object-cover">
+                                @else
+                                    <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover opacity-60">
+                                @endif
 
-                    <article class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-                        <div class="relative h-48 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=800&auto=format&fit=crop" alt="Berita" class="w-full h-full object-cover">
-                            <span class="absolute top-4 right-4 bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded">PENGUMUMAN</span>
-                        </div>
-                        <div class="p-6">
-                            <div class="text-gray-500 text-sm mb-2 flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                24 Januari 2026
+                                <span class="absolute top-4 right-4 text-xs font-bold px-3 py-1 rounded shadow text-white
+                                    {{ $post->kategori == 'kegiatan' ? 'bg-blue-600' : '' }}
+                                    {{ $post->kategori == 'pengumuman' ? 'bg-yellow-500' : '' }}
+                                    {{ $post->kategori == 'berita' ? 'bg-green-600' : '' }}">
+                                    {{ strtoupper($post->kategori) }}
+                                </span>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition">Jadwal Pemeliharaan Server</h3>
-                            <p class="text-gray-600 text-sm line-clamp-3">Diberitahukan kepada seluruh staf bahwa akan dilakukan pemeliharaan sistem pada hari Sabtu...</p>
-                            <a href="#" class="inline-block mt-4 text-blue-600 font-semibold hover:underline">Baca Selengkapnya &rarr;</a>
+
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div class="text-gray-500 text-sm mb-2 flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                    {{ $post->created_at->format('d M Y') }}
+                                </div>
+
+                                <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition line-clamp-2">
+                                    {{ $post->judul }}
+                                </h3>
+
+                                <p class="text-gray-600 text-sm line-clamp-3 mb-4 flex-grow">
+                                    {{ Str::limit(strip_tags($post->isi), 100) }}
+                                </p>
+
+                                <a href="#" class="inline-block text-blue-600 font-semibold hover:underline mt-auto">
+                                    Baca Selengkapnya &rarr;
+                                </a>
+                            </div>
+                        </article>
+                    @empty
+                        <div class="col-span-1 md:col-span-3 text-center py-12 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
+                            <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+                            <h3 class="text-lg font-medium text-gray-900">Belum ada berita terbaru</h3>
+                            <p class="text-gray-500">Silakan login sebagai admin untuk memposting berita atau kegiatan.</p>
                         </div>
-                    </article>
+                    @endforelse
                 </div>
             </div>
         </div>
@@ -199,6 +196,5 @@
         </footer>
 
     </div>
-
 </body>
 </html>
