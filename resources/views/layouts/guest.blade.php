@@ -57,11 +57,6 @@
 
                 <div class="w-full sm:max-w-md mt-6 px-8 py-10 bg-white shadow-xl rounded-3xl border-t-4 border-blue-600 transform hover:-translate-y-1 transition duration-500">
 
-                    <div class="mb-8 text-center">
-                        <h4 class="text-2xl font-bold text-gray-800">Selamat Datang 👋</h4>
-                        <p class="text-sm text-gray-500 mt-2">Silakan login menggunakan akun pegawai Anda</p>
-                    </div>
-
                     {{ $slot }}
 
                 </div>

@@ -1,4 +1,9 @@
 <x-guest-layout>
+    <div class="mb-8 text-center">
+        <h4 class="text-2xl font-bold text-gray-800">Selamat Datang 👋</h4>
+        <p class="text-sm text-gray-500 mt-2">Silakan login menggunakan akun pegawai Anda</p>
+    </div>
+
     <x-auth-session-status class="mb-4 text-center text-green-600 font-medium bg-green-50 p-3 rounded-lg border border-green-200" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}" class="space-y-5">
