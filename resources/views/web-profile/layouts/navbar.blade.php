@@ -17,7 +17,7 @@
                 <a href="{{ route('web.home') }}" class="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-blue-700 rounded-md hover:bg-blue-50 transition">HOME</a>
                 <a href="{{ route('web.profil') }}" class="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-blue-700 rounded-md hover:bg-blue-50 transition">PROFIL BIRO</a>
 
-                <a href="#" class="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-blue-700 hover:bg-blue-50 rounded-md transition">AGENDA</a>
+                <a href="{{ route('web.agenda') }}" class="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-blue-700 hover:bg-blue-50 rounded-md transition">AGENDA</a>
                 <a href="{{ route('web.kontak') }}" class="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-blue-700 hover:bg-blue-50 rounded-md transition">KONTAK</a>
 
                 <div class="pl-4 border-l border-gray-200 ml-2">
@@ -55,7 +55,7 @@
             <a href="{{ route('web.home') }}" class="block px-3 py-3 rounded-md text-base font-medium text-gray-800 hover:text-blue-600 hover:bg-blue-50 transition">HOME</a>
             <a href="{{ route('web.profil') }}" class="block px-3 py-3 rounded-md text-base font-medium text-gray-800 hover:text-blue-600 hover:bg-blue-50 transition">PROFIL BIRO</a>
 
-            <a href="#" class="block px-3 py-3 rounded-md text-base font-medium text-gray-800 hover:text-blue-600 hover:bg-blue-50 transition">AGENDA</a>
+            <a href="{{ route('web.agenda') }}" class="block px-3 py-3 rounded-md text-base font-medium text-gray-800 hover:text-blue-600 hover:bg-blue-50 transition">AGENDA</a>
             <a href="{{ route('web.kontak') }}" class="block px-3 py-3 rounded-md text-base font-medium text-gray-800 hover:text-blue-600 hover:bg-blue-50 transition">KONTAK</a>
 
             <div class="mt-6 pt-6 border-t border-gray-200">

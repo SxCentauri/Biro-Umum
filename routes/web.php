@@ -13,6 +13,8 @@ Route::controller(WebProfileController::class)->group(function () {
     Route::get('/profil', 'profil')->name('web.profil');
     Route::get('/layanan', 'layanan')->name('web.layanan');
     Route::get('/kontak', 'kontak')->name('web.kontak');
+    Route::get('/agenda', 'agenda')->name('web.agenda');
+    Route::get('/agenda/{id}', 'showAgenda')->name('web.agenda.show');
 });
 
 Route::middleware('auth')->group(function () {

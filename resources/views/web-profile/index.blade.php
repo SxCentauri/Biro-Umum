@@ -45,8 +45,8 @@
                         Selamat datang di Website Resmi Biro Umum. Pusat informasi layanan administrasi, keprotokolan, dan rumah tangga pimpinan daerah.
                     </p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="{{ route('web.layanan') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition transform hover:-translate-y-1">
-                            Layanan Pengaduan
+                        <a href="{{ route('web.agenda') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition transform hover:-translate-y-1">
+                            Agenda & Berita
                         </a>
                         <a href="{{ route('web.profil') }}" class="bg-white hover:bg-gray-100 text-blue-900 font-bold py-3 px-8 rounded-lg shadow-lg transition">
                             Profil Kami

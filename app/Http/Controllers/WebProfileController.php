@@ -31,4 +31,26 @@ class WebProfileController extends Controller
     {
         return view('web-profile.kontak');
     }
+
+    public function agenda()
+    {
+        $posts = Post::where('is_published', true)
+                    ->latest()
+                    ->paginate(6);
+
+        return view('web-profile.agenda', compact('posts'));
+    }
+
+    public function showAgenda($id)
+    {
+        $post = Post::findOrFail($id);
+
+        $recent_posts = Post::where('is_published', true)
+                            ->where('id', '!=', $id)
+                            ->latest()
+                            ->take(5)
+                            ->get();
+
+        return view('web-profile.agenda-detail', compact('post', 'recent_posts'));
+    }
 }
