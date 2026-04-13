@@ -38,7 +38,7 @@
                         <h3 class="text-3xl font-bold mb-2">Halo, {{ Auth::user()->name }}! 👋</h3>
                         <p class="text-blue-100 text-lg max-w-2xl leading-relaxed">
                             Selamat datang di Panel Admin. <br>
-                            Anda memiliki <strong class="text-yellow-300 font-bold bg-yellow-500/20 px-2 py-0.5 rounded">{{ $pendingTickets }} laporan baru</strong> yang perlu segera ditinjau hari ini.
+                            Anda memiliki <strong class="text-yellow-300 font-bold bg-yellow-500/20 px-2 py-0.5 rounded">{{ $pendingTickets ?? 0 }} laporan baru</strong> yang perlu segera ditinjau hari ini.
                         </p>
                     </div>
                     <div class="hidden md:block">
@@ -54,7 +54,7 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Total Laporan</p>
-                            <h4 class="text-3xl font-extrabold text-gray-800 mt-2">{{ $totalTickets }}</h4>
+                            <h4 class="text-3xl font-extrabold text-gray-800 mt-2">{{ $totalTickets ?? 0 }}</h4>
                         </div>
                         <div class="p-3 bg-blue-50 text-blue-600 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-sm">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
@@ -70,7 +70,7 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Menunggu</p>
-                            <h4 class="text-3xl font-extrabold text-red-600 mt-2">{{ $pendingTickets }}</h4>
+                            <h4 class="text-3xl font-extrabold text-red-600 mt-2">{{ $pendingTickets ?? 0 }}</h4>
                         </div>
                         <div class="p-3 bg-red-50 text-red-600 rounded-lg group-hover:bg-red-600 group-hover:text-white transition-colors duration-300 shadow-sm">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -85,7 +85,7 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Proses</p>
-                            <h4 class="text-3xl font-extrabold text-yellow-600 mt-2">{{ $processTickets }}</h4>
+                            <h4 class="text-3xl font-extrabold text-yellow-600 mt-2">{{ $processTickets ?? 0 }}</h4>
                         </div>
                         <div class="p-3 bg-yellow-50 text-yellow-600 rounded-lg group-hover:bg-yellow-500 group-hover:text-white transition-colors duration-300 shadow-sm">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
@@ -100,7 +100,7 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Selesai</p>
-                            <h4 class="text-3xl font-extrabold text-green-600 mt-2">{{ $doneTickets }}</h4>
+                            <h4 class="text-3xl font-extrabold text-green-600 mt-2">{{ $doneTickets ?? 0 }}</h4>
                         </div>
                         <div class="p-3 bg-green-50 text-green-600 rounded-lg group-hover:bg-green-600 group-hover:text-white transition-colors duration-300 shadow-sm">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
@@ -119,7 +119,7 @@
                             <span class="w-1.5 h-6 bg-blue-600 rounded-full"></span>
                             Tiket Masuk Terbaru
                         </h3>
-                        <p class="text-xs text-gray-500 mt-1 pl-4">Menampilkan daftar kerusakan yang baru dilaporkan.</p>
+                        <p class="text-xs text-gray-500 mt-1 pl-4">Menampilkan daftar laporan yang baru masuk.</p>
                     </div>
                     <a href="{{ route('admin.report.index') }}" class="group inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-800 transition bg-white border border-gray-200 px-4 py-2 rounded-lg hover:shadow-sm">
                         Lihat Semua Rekap
@@ -139,7 +139,7 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100">
-                            @forelse($recentTickets as $ticket)
+                            @forelse($recentTickets ?? [] as $ticket)
                             <tr class="hover:bg-blue-50/30 transition duration-150">
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex flex-col">
@@ -153,12 +153,13 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
+                                        @php $namaPelapor = $ticket->user->name ?? 'Anonim'; @endphp
                                         <div class="h-9 w-9 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center font-bold text-xs shadow-md mr-3 border border-white">
-                                            {{ substr($ticket->user->name, 0, 2) }}
+                                            {{ strtoupper(substr($namaPelapor, 0, 2)) }}
                                         </div>
                                         <div>
-                                            <div class="text-sm font-bold text-gray-900">{{ $ticket->user->name }}</div>
-                                            <div class="text-xs text-gray-500">{{ $ticket->user->unit_kerja ?? 'Unit -' }}</div>
+                                            <div class="text-sm font-bold text-gray-900">{{ $namaPelapor }}</div>
+                                            <div class="text-xs text-gray-500">{{ $ticket->user->unit_kerja ?? 'Unit Umum' }}</div>
                                         </div>
                                     </div>
                                 </td>

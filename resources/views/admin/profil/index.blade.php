@@ -16,6 +16,20 @@
         </div>
     </x-slot>
 
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 180px; /* Minimal tinggi kotak editor */
+            border-bottom-left-radius: 0.5rem !important;
+            border-bottom-right-radius: 0.5rem !important;
+        }
+        .ck-toolbar {
+            border-top-left-radius: 0.5rem !important;
+            border-top-right-radius: 0.5rem !important;
+            background-color: #f9fafb !important;
+            border-color: #d1d5db !important;
+        }
+    </style>
+
     <div class="py-8 bg-gray-50/50 min-h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
@@ -43,13 +57,13 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label for="visi" class="block text-sm font-medium text-gray-700 mb-2">Visi Instansi</label>
-                                <textarea id="visi" name="visi" rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-blue-500 focus:border-blue-500 @error('visi') border-red-500 @enderror" required placeholder="Tuliskan Visi Biro Umum...">{{ old('visi', $visiMisi->visi ?? '') }}</textarea>
+                                <textarea id="visi" name="visi" rows="9" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-blue-500 focus:border-blue-500 @error('visi') border-red-500 @enderror" required placeholder="Tuliskan Visi Biro Umum...">{{ old('visi', $visiMisi->visi ?? '') }}</textarea>
                                 @error('visi') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                             </div>
 
                             <div>
                                 <label for="misi" class="block text-sm font-medium text-gray-700 mb-2">Misi Instansi</label>
-                                <textarea id="misi" name="misi" rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-blue-500 focus:border-blue-500 @error('misi') border-red-500 @enderror" required placeholder="Gunakan tag HTML <ul> dan <li> untuk membuat daftar/list misi...">{{ old('misi', $visiMisi->misi ?? '') }}</textarea>
+                                <textarea id="misi" name="misi" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-blue-500 focus:border-blue-500 @error('misi') border-red-500 @enderror" placeholder="Tuliskan Misi di sini...">{{ old('misi', $visiMisi->misi ?? '') }}</textarea>
                                 @error('misi') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                             </div>
                         </div>
@@ -65,7 +79,6 @@
             </div>
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-2xl border border-gray-200">
-
                 <div class="p-6 border-b border-gray-100 flex flex-col md:flex-row justify-between items-center bg-gray-50/30 gap-4">
                     <div class="relative w-full md:w-auto">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -94,7 +107,6 @@
                         <tbody class="divide-y divide-gray-100">
                             @forelse($pejabats as $pejabat)
                             <tr class="hover:bg-blue-50/30 transition duration-150 group">
-
                                 <td class="px-6 py-4 align-middle">
                                     <div class="relative h-12 w-12 mx-auto rounded-full overflow-hidden shadow-sm border border-gray-200 group-hover:shadow-md transition">
                                         @if($pejabat->foto)
@@ -106,7 +118,6 @@
                                         @endif
                                     </div>
                                 </td>
-
                                 <td class="px-6 py-4 align-middle">
                                     <div class="max-w-md">
                                         <div class="text-sm font-bold text-gray-900 line-clamp-1 hover:text-blue-600 transition">
@@ -117,12 +128,10 @@
                                         </div>
                                     </div>
                                 </td>
-
                                 <td class="px-6 py-4 align-middle">
                                     <div class="text-sm font-medium text-gray-700">{{ $pejabat->pangkat_golongan ?? '-' }}</div>
                                     <div class="text-xs text-gray-400 mt-1">NIP. {{ $pejabat->nip ?? '-' }}</div>
                                 </td>
-
                                 <td class="px-6 py-4 align-middle text-center">
                                     @php
                                         $badges = [
@@ -141,13 +150,11 @@
                                         {{ $label }}
                                     </span>
                                 </td>
-
                                 <td class="px-6 py-4 align-middle text-right">
                                     <div class="flex items-center justify-end space-x-2">
                                         <a href="{{ route('admin.pejabat.edit', $pejabat->id) }}" class="p-2 bg-white border border-gray-200 rounded-lg text-yellow-600 hover:bg-yellow-50 hover:border-yellow-300 transition shadow-sm" title="Edit Data">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
                                         </a>
-
                                         <form action="{{ route('admin.pejabat.destroy', $pejabat->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pejabat ini secara permanen?');">
                                             @csrf
                                             @method('DELETE')
@@ -185,7 +192,19 @@
                 </div>
 
             </div>
-
         </div>
     </div>
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            ClassicEditor
+                .create(document.querySelector('#misi'), {
+                    toolbar: [ 'heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote', 'undo', 'redo' ]
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+    </script>
 </x-app-layout>

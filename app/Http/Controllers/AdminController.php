@@ -9,11 +9,11 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $totalTickets = Ticket::count();
+        $totalTickets   = Ticket::count();
         $pendingTickets = Ticket::where('status', 'pending')->count();
         $processTickets = Ticket::where('status', 'process')->count();
-        $doneTickets = Ticket::where('status', 'done')->count();
-        $recentTickets = Ticket::with('user')->latest()->take(5)->get();
+        $doneTickets    = Ticket::where('status', 'done')->count();
+        $recentTickets  = Ticket::with('user')->latest()->take(5)->get();
 
         return view('admin.dashboard', compact(
             'totalTickets',
@@ -27,6 +27,7 @@ class AdminController extends Controller
     public function show($id)
     {
         $ticket = Ticket::with('user')->findOrFail($id);
+
         return view('admin.tickets.show', compact('ticket'));
     }
 
