@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\VisiMisi;
+use App\Models\Pejabat;
 use Illuminate\Http\Request;
 
 class WebProfileController extends Controller
@@ -19,7 +21,26 @@ class WebProfileController extends Controller
 
     public function profil()
     {
-        return view('web-profile.profil');
+        $visiMisi = VisiMisi::first();
+
+        $kepala = Pejabat::where('level', 'kepala')->first();
+
+        $kabagRt = Pejabat::where('level', 'kabag_rt')->first();
+        $subRt = Pejabat::where('level', 'sub_rt')->get();
+
+        $kabagKeuangan = Pejabat::where('level', 'kabag_keuangan')->first();
+        $subKeuangan = Pejabat::where('level', 'sub_keuangan')->get();
+
+        $kabagProtokol = Pejabat::where('level', 'kabag_protokol')->first();
+        $subProtokol = Pejabat::where('level', 'sub_protokol')->get();
+
+        return view('web-profile.profil', compact(
+            'visiMisi',
+            'kepala',
+            'kabagRt', 'subRt',
+            'kabagKeuangan', 'subKeuangan',
+            'kabagProtokol', 'subProtokol'
+        ));
     }
 
     public function layanan()

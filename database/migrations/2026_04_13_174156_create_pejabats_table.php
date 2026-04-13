@@ -17,6 +17,7 @@ return new class extends Migration
         $table->string('jabatan');
         $table->string('pangkat_golongan')->nullable();
         $table->string('nip')->nullable();
+        $table->string('foto')->nullable();
         $table->enum('level', ['kepala', 'kabag_keuangan', 'kabag_rt', 'kabag_protokol', 'sub_keuangan', 'sub_rt', 'sub_protokol']);
         $table->timestamps();
     });
