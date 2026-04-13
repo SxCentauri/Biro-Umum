@@ -7,6 +7,7 @@ use App\Http\Controllers\WebProfileController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ProfilController as AdminProfilController;
 
 Route::controller(WebProfileController::class)->group(function () {
     Route::get('/', 'index')->name('web.home');
@@ -35,6 +36,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/admin/posts/{id}', [AdminPostController::class, 'destroy'])->name('admin.posts.destroy');
     Route::get('/admin/report', [ReportController::class, 'index'])->name('admin.report.index');
     Route::get('/admin/report/print', [ReportController::class, 'print'])->name('admin.report.print');
+    Route::get('/profil', [AdminProfilController::class, 'index'])->name('profil.index');
+    Route::post('/profil/visi-misi', [ProfilController::class, 'updateVisiMisi'])->name('profil.update-visi-misi');
 });
 
 Route::middleware(['auth', 'role:user'])->group(function () {
