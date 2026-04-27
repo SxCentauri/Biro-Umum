@@ -33,7 +33,6 @@
                                     <th class="py-3 px-6 text-left">Judul Laporan</th>
                                     <th class="py-3 px-6 text-left">Lokasi</th>
                                     <th class="py-3 px-6 text-center">Status</th>
-                                    <th class="py-3 px-6 text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="text-gray-600 text-sm font-light">
@@ -56,9 +55,6 @@
                                         @else
                                             <span class="bg-green-200 text-green-700 py-1 px-3 rounded-full text-xs">Selesai</span>
                                         @endif
-                                    </td>
-                                    <td class="py-3 px-6 text-center">
-                                        <button class="text-blue-500 hover:text-blue-700">Detail</button>
                                     </td>
                                 </tr>
                                 @empty
