@@ -4,7 +4,7 @@
             <div class="flex">
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('web.home') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-blue-600 transition transform hover:scale-105" />
+                        <img src="{{ asset('images/logo.png') }}" alt="Logo Biro Umum" class="block h-9 w-auto transition transform hover:scale-105" />
                     </a>
                 </div>
 
