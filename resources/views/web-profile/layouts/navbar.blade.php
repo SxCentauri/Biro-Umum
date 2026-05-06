@@ -4,8 +4,7 @@
 
             <div class="flex items-center">
                 <a href="{{ route('web.home') }}" class="flex items-center gap-3 group">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Lambang_Provinsi_Bengkulu.png"
-                         alt="Logo" class="h-10 md:h-12 w-auto transition transform group-hover:scale-105">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo Biro Umum" class="h-10 md:h-12 w-auto transition transform group-hover:scale-105">
                     <div class="flex flex-col">
                         <span class="font-extrabold text-gray-800 text-base md:text-lg leading-none tracking-tight">BIRO UMUM</span>
                         <span class="text-[10px] md:text-xs text-gray-500 font-medium tracking-wide">SEKRETARIAT DAERAH BENGKULU</span>

@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>{{ config('app.name', 'Biro Umum') }}</title>
+        <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+        <title>Biro Umum - Sekretariat Daerah</title>
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -30,7 +30,7 @@
                      class="absolute inset-0 w-full h-full object-cover opacity-40 transform scale-105 hover:scale-110 transition duration-[20s] ease-linear">
 
                 <div class="relative z-10 text-white text-center px-12">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Lambang_Provinsi_Bengkulu.png"
+                    <img src="{{ asset('images/logo.png') }}"
                          alt="Logo" class="w-32 h-auto mx-auto mb-8 drop-shadow-2xl animate-[bounce_3s_infinite]">
 
                     <h2 class="text-5xl font-extrabold mb-3 tracking-tight">Sistem Informasi</h2>

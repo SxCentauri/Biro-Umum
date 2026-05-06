@@ -67,14 +67,5 @@
                 {{ __('MASUK KE SISTEM') }}
             </button>
         </div>
-
-        <div class="text-center mt-6 pt-4 border-t border-gray-100">
-            <p class="text-sm text-gray-500">
-                Belum punya akun pegawai?
-                <a href="{{ route('register') }}" class="font-bold text-blue-600 hover:text-blue-800 transition underline decoration-transparent hover:decoration-blue-600">
-                    Daftar Sekarang
-                </a>
-            </p>
-        </div>
     </form>
 </x-guest-layout>
